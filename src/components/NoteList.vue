@@ -3,12 +3,12 @@
     <li
       class="list-group-item mb-2 py-3 note-list__item"
       :class="{
-        'bg-white': selectedNoteId !== id,
-        'bg-primary text-white': selectedNoteId === id
+        'bg-white': !isNoteSelected(id),
+        'bg-primary text-white': isNoteSelected(id)
       }"
       v-for="{ id, title } of notes"
       :key="id"
-      @click="$emit('selectNote', id)"
+      @click="selectNoteId(id)"
     >
       <span>{{ title }}</span>
     </li>
@@ -16,19 +16,16 @@
 </template>
 
 <script>
+import { mapState, mapGetters, mapMutations } from "vuex";
+
 export default {
   name: "note-list",
-  props: {
-    notes: {
-      type: Array,
-      default() {
-        return [];
-      }
-    },
-    selectedNoteId: {
-      type: [Number, String],
-      default: null
-    }
+  computed: {
+    ...mapState(["notes"]),
+    ...mapGetters(["isNoteSelected"])
+  },
+  methods: {
+    ...mapMutations(["selectNoteId"])
   }
 };
 </script>

@@ -8,23 +8,16 @@
       >
         Add note ({{ numberOfNotes }})
       </button>
-      <NoteList
-        :notes="notes"
-        :selectedNoteId="selectedNoteId"
-        @selectNote="selectNoteId"
-      />
+      <NoteList />
     </aside>
     <template v-if="selectedNote">
       <main class="section main">
-        <Toolbar :note="selectedNote" @remove="removeNote" />
-        <Editor :note="selectedNote" />
-        <StatusBar
-          :content="selectedNote.content"
-          :createdAt="selectedNote.createdAt"
-        />
+        <Toolbar />
+        <Editor />
+        <StatusBar />
       </main>
       <aside class="section preview bg-light">
-        <Previewer :markdown="selectedNote.content" />
+        <Previewer />
       </aside>
     </template>
   </div>
@@ -37,49 +30,15 @@ import StatusBar from "@/components/StatusBar";
 import NoteList from "@/components/NoteList";
 import Toolbar from "@/components/Toolbar";
 
-import Note from "@/models/Note";
+import { mapMutations, mapGetters } from "vuex";
 
 export default {
   name: "app",
-  data() {
-    return {
-      notes: [],
-      selectedNoteId: null
-    };
-  },
   methods: {
-    addNote() {
-      const note = Note.create(
-        `New note #${this.newNoteNumber}`,
-        `### Content of a new note`
-      );
-
-      this.notes.push(note);
-    },
-    removeNote(id) {
-      const index = this.findNoteIndexById(id);
-
-      index !== -1 && this.notes.splice(index, 1);
-    },
-    selectNoteId(id) {
-      this.selectedNoteId = id;
-    },
-    findNoteIndexById(id) {
-      return this.notes.findIndex(note => note.id === id);
-    }
+    ...mapMutations(["addNote"])
   },
   computed: {
-    numberOfNotes() {
-      return this.notes.length;
-    },
-    newNoteNumber() {
-      return this.numberOfNotes + 1;
-    },
-    selectedNote() {
-      return this.selectedNoteId
-        ? this.notes.find(note => note.id === this.selectedNoteId)
-        : null;
-    }
+    ...mapGetters(["numberOfNotes", "selectedNote"])
   },
   components: {
     Editor,

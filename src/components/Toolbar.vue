@@ -6,10 +6,7 @@
           <input class="form-control" type="text" v-model="note.title" />
         </div>
       </form>
-      <button
-        class="btn btn-danger btn-sm ml-2"
-        @click="$emit('remove', note.id)"
-      >
+      <button class="btn btn-danger btn-sm ml-2" @click="removeNote(note.id)">
         <i class="fas fa-trash"></i>
       </button>
     </div>
@@ -17,15 +14,17 @@
 </template>
 
 <script>
+import { mapGetters, mapActions } from "vuex";
+
 export default {
   name: "toolbar",
-  props: {
-    note: {
-      type: Object,
-      default() {
-        return {};
-      }
-    }
+  computed: {
+    ...mapGetters({
+      note: "selectedNote"
+    })
+  },
+  methods: {
+    ...mapActions(["removeNote"])
   }
 };
 </script>

@@ -8,15 +8,14 @@
 </template>
 
 <script>
+import { mapGetters } from "vuex";
+
 export default {
   name: "editor",
-  props: {
-    note: {
-      type: Object,
-      default() {
-        return {};
-      }
-    }
+  computed: {
+    ...mapGetters({
+      note: "selectedNote"
+    })
   }
 };
 </script>

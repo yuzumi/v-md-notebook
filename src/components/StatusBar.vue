@@ -10,28 +10,20 @@
 
 <script>
 import { format } from "date-fns";
+import { mapGetters } from "vuex";
 
 export default {
   name: "status-bar",
-  props: {
-    createdAt: {
-      type: Number,
-      default: Date.now()
-    },
-    content: {
-      type: String,
-      default: ""
-    }
-  },
   computed: {
+    ...mapGetters(["selectedNote"]),
     linesCount() {
-      return this.content.split(/\r\n|\r|\n/).length;
+      return this.selectedNote.content.split(/\r\n|\r|\n/).length;
     },
     charsCount() {
-      return this.content.split("").length;
+      return this.selectedNote.content.split("").length;
     },
     date() {
-      return format(this.createdAt, "dd/MM/yy, HH:mm");
+      return format(this.selectedNote.createdAt, "dd/MM/yy, HH:mm");
     }
   }
 };
