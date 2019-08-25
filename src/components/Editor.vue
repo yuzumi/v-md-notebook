@@ -2,8 +2,7 @@
   <form class="editor mb-0">
     <textarea
       class="form-control editor__workspace"
-      :value="value"
-      @input="$emit('setValue', $event.target.value)"
+      v-model="note.content"
     ></textarea>
   </form>
 </template>
@@ -12,9 +11,11 @@
 export default {
   name: "editor",
   props: {
-    value: {
-      type: String,
-      default: ""
+    note: {
+      type: Object,
+      default() {
+        return {};
+      }
     }
   }
 };
