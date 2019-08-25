@@ -18,7 +18,10 @@
       <main class="section main">
         <Toolbar :note="selectedNote" @remove="removeNote" />
         <Editor :note="selectedNote" />
-        <StatusBar :content="selectedNote.content" />
+        <StatusBar
+          :content="selectedNote.content"
+          :createdAt="selectedNote.createdAt"
+        />
       </main>
       <aside class="section preview bg-light">
         <Previewer :markdown="selectedNote.content" />
@@ -45,9 +48,6 @@ export default {
     };
   },
   methods: {
-    setContent(value) {
-      this.content = value;
-    },
     addNote() {
       const note = Note.create(
         `New note #${this.newNoteNumber}`,
@@ -76,11 +76,9 @@ export default {
       return this.numberOfNotes + 1;
     },
     selectedNote() {
-      if (this.selectedNoteId) {
-        return this.notes.find(note => note.id === this.selectedNoteId);
-      }
-
-      return null;
+      return this.selectedNoteId
+        ? this.notes.find(note => note.id === this.selectedNoteId)
+        : null;
     }
   },
   components: {
