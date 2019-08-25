@@ -103,12 +103,41 @@ export default {
   padding: 1rem;
 }
 
+.sidebar {
+  overflow-y: auto;
+
+  grid-column: 1 / 3;
+  grid-row: 1 / 5;
+}
+
 .main {
   display: flex;
   flex-direction: column;
+
+  grid-column: 3 / 6;
+  grid-row: 1 / 3;
 }
 
-.sidebar {
-  overflow-y: auto;
+.preview {
+  grid-column: 3 / 6;
+  grid-row: 3 / 5;
+}
+
+@media screen and (min-width: 992px) {
+  .section {
+    grid-row: 1 / 5;
+  }
+
+  .sidebar {
+    grid-column: 1 / 2;
+  }
+
+  .main {
+    grid-column: 2 / 4;
+  }
+
+  .preview {
+    grid-column: 4 / 6;
+  }
 }
 </style>
