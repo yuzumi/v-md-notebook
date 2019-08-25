@@ -1,5 +1,5 @@
 <template>
-  <div class="toolbar">
+  <div class="toolbar pb-3">
     <div class="d-flex align-items-center">
       <form class="mb-0" style="flex: 1 1">
         <div class="form-group mb-0">
