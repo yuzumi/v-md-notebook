@@ -30,7 +30,7 @@ import StatusBar from "@/components/StatusBar";
 import NoteList from "@/components/NoteList";
 import Toolbar from "@/components/Toolbar";
 
-import { mapMutations, mapGetters } from "vuex";
+import { mapMutations, mapGetters, mapState } from "vuex";
 
 export default {
   name: "app",
@@ -38,7 +38,8 @@ export default {
     ...mapMutations(["addNote"])
   },
   computed: {
-    ...mapGetters(["numberOfNotes", "selectedNote"])
+    ...mapState(["selectedNote"]),
+    ...mapGetters(["numberOfNotes"])
   },
   components: {
     Editor,

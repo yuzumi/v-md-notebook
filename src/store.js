@@ -7,7 +7,7 @@ Vue.use(Vuex);
 export default new Vuex.Store({
   state: {
     notes: [],
-    selectedNoteId: null
+    selectedNote: null
   },
   mutations: {
     addNote: state => {
@@ -18,8 +18,8 @@ export default new Vuex.Store({
     removeNote: (state, index) => {
       state.notes.splice(index, 1);
     },
-    selectNoteId: (state, id) => {
-      state.selectedNoteId = id;
+    selectNote: (state, note) => {
+      state.selectedNote = note;
     }
   },
   actions: {
@@ -30,14 +30,11 @@ export default new Vuex.Store({
     }
   },
   getters: {
-    selectedNote: ({ notes, selectedNoteId }) => {
-      return notes.find(note => note.id === selectedNoteId);
-    },
     numberOfNotes: ({ notes }) => {
       return notes.length;
     },
-    isNoteSelected: ({ selectedNoteId }) => id => {
-      return selectedNoteId === id;
+    isNoteSelected: ({ selectedNote }) => id => {
+      return selectedNote && selectedNote.id === id;
     },
     getNoteIndexById: ({ notes }) => id => {
       return notes.findIndex(note => note.id === id);

@@ -10,12 +10,12 @@
 
 <script>
 import { format } from "date-fns";
-import { mapGetters } from "vuex";
+import { mapState } from "vuex";
 
 export default {
   name: "status-bar",
   computed: {
-    ...mapGetters(["selectedNote"]),
+    ...mapState(["selectedNote"]),
     linesCount() {
       return this.selectedNote.content.split(/\r\n|\r|\n/).length;
     },

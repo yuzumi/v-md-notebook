@@ -4,12 +4,12 @@
 
 <script>
 import marked from "marked";
-import { mapGetters } from "vuex";
+import { mapState } from "vuex";
 
 export default {
   name: "previewer",
   computed: {
-    ...mapGetters(["selectedNote"]),
+    ...mapState(["selectedNote"]),
     compiledMarkdown() {
       return marked(this.selectedNote.content);
     }
