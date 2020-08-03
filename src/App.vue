@@ -52,10 +52,6 @@ export default {
 </script>
 
 <style>
-@import "~@fortawesome/fontawesome-free/css/all.min.css";
-@import "~bootstrap-material-design/dist/css/bootstrap-material-design.min.css";
-@import "assets/styles/index.css";
-
 .section {
   height: 100%;
   padding: 1rem;

@@ -10,12 +10,13 @@
 
 <script>
 import { mapGetters, mapMutations } from "vuex";
+import Note from "@/models/Note";
 
 export default {
   name: "note-list-item",
   props: {
     note: {
-      type: Object,
+      type: Note,
       required: true
     }
   },

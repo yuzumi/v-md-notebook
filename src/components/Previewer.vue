@@ -1,5 +1,5 @@
 <template>
-  <p class="previewer mb-0" v-html="compiledMarkdown"></p>
+  <p class="previewer mb-0" v-html="compiledMarkdown" />
 </template>
 
 <script>

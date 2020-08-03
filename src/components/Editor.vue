@@ -1,9 +1,6 @@
 <template>
   <form class="editor mb-0">
-    <textarea
-      class="form-control editor__workspace"
-      v-model="note.content"
-    ></textarea>
+    <textarea class="form-control editor__workspace" v-model="note.content" />
   </form>
 </template>
 
