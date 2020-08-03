@@ -1,38 +1,20 @@
 <template>
   <ul class="list-group note-list">
-    <li
-      class="list-group-item mb-2 py-3 note-list__item"
-      :class="{
-        'bg-white': !isNoteSelected(id),
-        'bg-primary text-white': isNoteSelected(id)
-      }"
-      v-for="{ id, title } of notes"
-      :key="id"
-      @click="selectNoteId(id)"
-    >
-      <span>{{ title }}</span>
-    </li>
+    <note-list-item v-for="note of notes" :key="note.id" :note="note" />
   </ul>
 </template>
 
 <script>
-import { mapState, mapGetters, mapMutations } from "vuex";
+import { mapState } from "vuex";
+import NoteListItem from "@/components/NoteListItem";
 
 export default {
   name: "note-list",
   computed: {
-    ...mapState(["notes"]),
-    ...mapGetters(["isNoteSelected"])
+    ...mapState(["notes"])
   },
-  methods: {
-    ...mapMutations(["selectNoteId"])
+  components: {
+    NoteListItem
   }
 };
 </script>
-
-<style>
-.note-list__item {
-  cursor: pointer;
-  font-size: 0.9rem;
-}
-</style>
